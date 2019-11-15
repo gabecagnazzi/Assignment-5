@@ -1,9 +1,17 @@
-# R script to accopany Intro to R
-# Copy for Gabe Cagnazzi
-######################################################
+ptm <- proc.time()
+DF <- read.csv("CPIAUCSL.csv")
+CSV_READ_TIME <- (proc.time()-ptm)
+CSV_READ_TIME
 
-# You will see that you can put non-executable "comment" lines
-# in your script by putting "#" at the beginning of the lines.
-# 
-# In fact, you can put comments anywhere on a line as long as 
-# you put "#" before them.
+class(DF)
+typeof(DF)
+str(DF)
+
+if (!require("data table"))install.packages("data table")
+library("data table")
+
+ptm <- proc.time()
+DF <- fread ("CPIAUCSL.csv", header="auto",
+             data.table=FALSE)
+FREAD_READ_TIME <- (proc.time() =- ptm)
+FREAD_READ_TIME
